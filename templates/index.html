@@ -1,0 +1,30 @@
+<!-- templates/index.html -->
+ <!DOCTYPE html>
+ <html>
+    <head>
+        <title>FAQ Chatbot</title>
+        <style>
+            body {font-family: Arial, sans-serif; margin:40px; }
+            input[type="text"] {width: 60%; padding: 10px; }
+            input[type="submit"] {padding: 10px 20px; }
+            .response {margin-top: 20px}
+            .match-info {color: gray; font-size: 0.9em;}
+        </style>
+    </head>
+    <body>
+        <h1>🤖 FAQ Chatbot</h1>
+        <form method="post">
+            <input type="text" name="question" placeholder="Ask a question..." required value="{{ question }}">
+            <input type="submit" value="Ask">
+        </form>
+
+        {% if response %}
+        <div class="response">
+            <p><strong>Bot:</strong> {{ response | e }}</p>
+            <div class="match-info">
+                Matched FAQ: "{{ match }}" (Similarity: {{ "%.2f"|format(similarity) }})
+            </div>
+        </div>
+        {% endif %}
+    </body>
+ </html>
